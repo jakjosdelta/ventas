@@ -19,7 +19,7 @@ $miconexion ->conectar($db_name,$db_host, $db_user, $db_password);
 
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 
-
+  
 <!-- DataTables CSS -->
 <!-- DataTables CSS -->
 <link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
