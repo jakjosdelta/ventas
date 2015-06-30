@@ -175,7 +175,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
 
                         extract($_GET);
                         if(@$act==1){ //eliminar datos
-                          echo "HOLAAAAAA";
+                         
                           $miconexion->consulta("delete from ".$tb."  where id=".$id."");
                          // $miconexion->verconsulta($tb);
                           echo "<script>location.href='".$_SERVER['PHP_SELF']."'</script>";
