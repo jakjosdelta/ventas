@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                <!DOCTYPE html>
                 <?php
 session_start();
 include("static/site_config.php");
@@ -9,8 +9,6 @@ $miconexion = new clase_mysql;
 $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
 
 ?>
-
-
 <html lang="en">
 
 <head>
@@ -20,14 +18,31 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script type="text/javascript" src="cssmenu/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="cssmenu/styles.css">
+  
+  </style>
 
-    <title>Shop Homepage</title>
+    <title>Tienda online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/shop-homepage.css" rel="stylesheet">
+
+
+ <script src="jquery.min.js"></script>
+         <script src="pag.js"></script>
+         
+
+
+
+        <script>
+        $(document).ready(function() {
+            $('#table_id').oneSimpleTablePagination({ rowsPerPage:10, topNav:false, floatingHeader: false});
+        });
+    </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,6 +54,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
 </head>
 
 <body>
+
 <?php
         $nombre_archivo = parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
         //verificamos si en la ruta nos han indicado el directorio en el que se encuentra
@@ -50,16 +66,21 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
 
 
         ?>
+
+
     <!-- Navigation -->
 
+   
+           <?php
+                   include("include/menu.php");
+           ?>
 
 
-  <?php
-include("include/menu.php");
-  ?>
-       
 
 
+
+
+  <!-- Modal -->
 
 
 
@@ -68,15 +89,14 @@ include("include/menu.php");
 
         <div class="row">
 
-         <div class="col-md-12 thumbnail">
+
+    <div class="col-md-12 thumbnail">
             
                 <img src="img/mibanner.gif">
-        </div>
+    </div>
 
 
-
-
-             <div class="col-md-3 col-sm-11">
+        
                 <?php
                         $query = "SELECT * from productos where descuento>0";
                              $miconexion->consulta($query);
@@ -91,7 +111,10 @@ include("include/menu.php");
 
                              echo "</div>";
 
-                ?>           
+                ?>
+
+                
+                
             </div>
 
             <div class="col-md-9 " >
@@ -169,16 +192,14 @@ include("include/menu.php");
                 </div>
             </div>
 
-          
-        <div class="col-md-12 thumbnail">
-               
-             <h2 align='center'><span class='label label-default'>LISTA DE PRODUCTOS EN PROMOCIÓN</span></h2><br><br>
 
+            <div class="col-md-12 col-xs-10 col-sm-9 thumbnail">
+             <h2 align='center'><span class='label label-default'>LISTA DE PRODUCTOS EN PROMOCIÓN</span></h2><br><br>
 
                 <div class="row">
 
-                 <?php
-                  
+
+                    <?php
                     extract($_GET);
                     if (@!$seleccion) {
                         $query2 = "SELECT * from productos where promocion='si'";
@@ -192,15 +213,19 @@ include("include/menu.php");
                     }
                              
                     ?>
+                   
+                
 
-                    
                 </div>
-
-
 
             
 
         </div>
+
+            
+
+        </div>
+
     </div>
     <!-- /.container -->
 
@@ -210,7 +235,7 @@ include("include/menu.php");
 
         <!-- Footer -->
         <footer>
-            <div class="row">
+               <div class="row">
                 <div class="col-lg-12">
                     <p>Copyright &copy; Your Website 2014</p>
                 </div>

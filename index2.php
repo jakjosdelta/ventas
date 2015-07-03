@@ -86,69 +86,44 @@ $(document).ready(function() {
    <h1 align="center">tienda online</h1>
         
             <!-- Brand and toggle get grouped for better mobile display -->
+   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                
-                <a class="navbar-brand" href="#">Productos</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div id='cssmenu'>
-            <ul>
-                <?php
-
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <?php
                 $query = "SELECT distinct descripcion FROM categorias";
                
                 $miconexion->consulta($query);
                     $result = mysql_query($query) or die("error". mysql_error());
-                    $cont=0;
+                    echo "<li class='dropdown'><a href='index.php?seleccion='>INICIO</a></li>";
                      while ($row = mysql_fetch_array($result)) {
-                        echo "<li class='active has-sub'><a href='#'>" . $row[0] . "</a>";
-                        $nombreli="<li>". $row[0];
-                        
 
-                            //$cont++;
-
-                       // $nombre=$miconexion->nombrecampo(1);
-                       // $cont++;
-                       // echo "nombre ".$nombre;
-                        
-
-                     //   $tb="contenidos";
-                      //  $miconexion->consulta("select * from contenidos");
-                      //  $miconexion->verconsulta($tb);
-
-                        echo "<ul>
-                             <li class='last'>";
-                               $query1 = "SELECT nombre,nombre2 FROM categorias where descripcion='".$nombreli."'";
-                                 $miconexion->verconsulta2($query1);
-                                $result1 = mysql_query($query1) or die("error". mysql_error());
-                                echo "<div class='table-responsive'>";
-                                    echo "<table border='1'; class='table table-hover';>";
-
-                                    while ($row1 = mysql_fetch_array($result1)) {
-                                        echo "<tr class='success'>";
-                                        for ($i=0; $i < $miconexion->numcampos(); $i++) { 
-                                            echo "<td>".$row1[$i]."</td>";
-                                        }
-            
-                
-                                    echo "</tr>";
-                                }
-                                echo "</table>";
-                                echo "</div>";
-                                
-                        echo "</li>
-                        </ul>
-                      </li>";
-
-                          
-                     }
-                        
-                      ?>        
+                        echo "<li><a href='#'>" . $row['descripcion'] . "</a>";                        
+                            echo "<ul class='dropdown-menu'>
+                                     <li>";
+                                       $query1 = "SELECT nombre,nombre2 FROM categorias where descripcion='".$row['descripcion']."'";
+                                        $miconexion->consulta($query1);
+                                         $miconexion->verconsulta2();
                        
+                                echo "</li>
+                                  </ul>
+                              </li>";
+                    }
+   
+                ?>   
 
-               
-              
-               <?php
+                <?php
                 if (@!$_SESSION['user']) {
                     echo "<li class='nav pull-right'>
                         <a href='#login-box' class='login-window'>Login / Sign In</a>
@@ -160,40 +135,16 @@ $(document).ready(function() {
                     <a href='#'>".$_SESSION['user']."</a></li>";
                     
 
-                }
-
-
-                ?>
-
-            </ul>
+                    } 
+                    ?>   
+                </ul>
             </div>
-        
-     
-ENTREEEE PUTAAAQAA
-
             <!-- /.navbar-collapse -->
-<?php
-echo "ENTREEEE PUTAAAQAA";
-                            $query1 = "SELECT nombre,nombre2 FROM categorias where descripcion='".$nombreli."'";
-                                $result1 = mysql_query($query1) or die("error". mysql_error());
-                                echo "<div class='table-responsive'>";
-                                    echo "<table border='1'; class='table table-hover';>";
+        </div>
+        <!-- /.container -->
+    </nav>
 
-                                    while ($row = mysql_fetch_array($result1)) {
-                                        echo "<tr class='success'>";
-
-                                        for ($i=0; $i < $miconexion->numcampos(); $i++) { 
-                                            echo "<td>".$row[$i]."</td>";
-                                        }
-            
-                
-                                    echo "</tr>";
-                                }
-                                echo "</table>";
-                                echo "</div>";
-                                                      
-?>
-
+ 
 
 
 <div class="container">
