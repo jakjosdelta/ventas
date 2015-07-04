@@ -24,10 +24,11 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     <title>Shop Homepage</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+ 
+    <?php
+      include("librerias.php");
+    ?>
     <!-- Custom CSS -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,21 +57,21 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
 
   <?php
 include("include/menu.php");
-  ?>
-       
+  ?>     
 
 
 
 
-
+<br><br><br>
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
 
          <div class="col-md-12 thumbnail">
-            
+                
                 <img src="img/mibanner.gif">
+
         </div>
 
 
@@ -94,7 +95,8 @@ include("include/menu.php");
                 ?>           
             </div>
 
-            <div class="col-md-9 " >
+            <div class="col-md-9 " align="center">
+                <img src="img/oferta.gif" width="600px" height="50px">
                  <div class="row carousel-holder">
                  <div class="col-md-12 col-xs-12 col-sm-11">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -220,11 +222,11 @@ include("include/menu.php");
     </div>
     <!-- /.container -->
 
-    <!-- jQuery -->
+    <!-- jQuery 
     <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core JavaScript
+    <script src="js/bootstrap.min.js"></script> -->
 
 </body>
 

@@ -19,14 +19,10 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     <meta name="description" content="">
     <meta name="author" content="">
 
-
+    <?php
+      include("librerias.php");
+    ?>
     <title>Tienda online</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -84,7 +80,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
                          while ($row = mysql_fetch_array($result)) {
                             echo "<div class='btn-group' role='group'>
                                 <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                                ".$row['descripcion']."
+                                ".ucwords($row['descripcion'])."
                                 <span class='caret'/>
                                 </button>";
                                  echo "<ul  class='dropdown-menu' >
@@ -133,7 +129,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
 
                     ?>
 
-                     <div class="col-md-12 col-xs-12 col-sm-12">
+                     <div class="col-md-12" align="center">
 
                      <?php
                     
@@ -187,11 +183,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     </div>
     <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 

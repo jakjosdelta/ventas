@@ -1,15 +1,6 @@
                 <!DOCTYPE html>
                 <?php
 session_start();
-
-//no seja entrar hasta que haya un usuario logeado
-extract($_GET);
-if (@$_SESSION['user']) {
-   header("location:index.php");
-}
-
-
-
 include("static/site_config.php");
 include("static/clase_mysql.php");
 
@@ -20,12 +11,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
 ?>
 <html lang="en">
 
-
-
-
 <head>
-
-
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,16 +19,17 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     <meta name="description" content="">
     <meta name="author" content="">
 
-
+    <?php
+      include("librerias.php");
+    ?>
     <title>Tienda online</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/shop-homepage.css" rel="stylesheet">
 
-
-      <?php
-            include("librerias.php");
-      ?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -50,10 +37,10 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
 </head>
 
 <body>
+
 <?php
         $nombre_archivo = parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
         //verificamos si en la ruta nos han indicado el directorio en el que se encuentra
@@ -70,6 +57,9 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
                    include("include/menu.php");
            ?>
  
+           
+
+  
 
 
 
@@ -129,68 +119,58 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
                     <?php
                     extract($_GET);
 
-                    echo "<h2 align='center'><span class='label label-default'>Resumen de su carrito de compras</span></h2><br><br>";      
+                       if (@$seleccion2=='nada') {
+                         echo "<h2 align='center'><span class='label label-default'>No se encontraron resultados de la búsqueda</span></h2><br><br>";  
+                      }else{
+                          if (@!$seleccion2) {
+                           echo "<h2 align='center'><span class='label label-default'>".@$seleccion."</span></h2><br><br>";
+
+                          }else{
+                           echo "<h2 align='center'><span class='label label-default'>Resultados de la busqueda para '".$seleccion2."'</span></h2><br><br>";
+
+                          }
+                      }
+
+                      
 
                     ?>
 
                      <div class="col-md-12 col-xs-12 col-sm-12">
 
-                     
-
-                    <script>
-
-                    $(document).ready(function(){
-
-                      $("#nombre2").change(function(){
-                        //alert($('input[id=nombre2]').val());
-                        window.location="validar5.php?cant="+$(this).val();
-                      });
-
-                    });
-         
-                        
-                    </script>
-                
                      <?php
                     
                       extract($_GET);
-                        if (@!$seleccion) {
-                            $query2 = "SELECT * from carrito where id_usuario=".$_SESSION['id']."";
-                            $miconexion->consulta($query2);
-                            $miconexion->listarcar();
-                            # code...
-                        } 
 
-                        extract($_GET);
-                        if(@$act==1){ //eliminar datos
-                         
-                          $miconexion->consulta("delete from ".$tb."  where id=".$id."");
-                         // $miconexion->verconsulta($tb);
-                          echo "<script>location.href='".$_SERVER['PHP_SELF']."'</script>";
-                      }     
+                    if (@!$seleccion2) {
+
+                        if (@!$seleccion) {
+                            $query2 = "SELECT * from productos";
+                            $miconexion->consulta($query2);
+                            $miconexion->listar2();
+                            # code...
+                        }else{
+                            $query2 = "SELECT * from productos where nombre_cat='".$miconexion->quitar_tildes($seleccion)."'";
+                            $miconexion->consulta($query2);
+                            $miconexion->listar2();
+
+                        }
+                          
+                    }else{
+
+                          $query3 = "SELECT * from productos where nombre like '%".$miconexion->quitar_tildes($seleccion2)."%'";
+                            $miconexion->consulta($query3);
+                            $miconexion->listar2();
+
+                    }       
                     ?>
                             
                       </div>
-                       
-                       <?php
-                          $query3 = "SELECT * from carrito where id_usuario=".$_SESSION['id']."";
-                           $miconexion->consulta($query3); 
-                          $suma=0;
-                          while (@$row = mysql_fetch_array($query3)) {
-                                $suma=$suma+$row['total'];
-                          }
 
-                       echo "<h2 align='center'><span class='label label-primary'>TOTAL A PAGAR</span></h2><br>";
-                       echo "<h2 align='center'>".$suma."</h2><br><br>";
-
-                       ?>
-
-
-                </div>
-
-
+            </div>
 
     </div>
+
+  
     <!-- /.container -->
 
     <div class="container">
@@ -209,13 +189,12 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     </div>
     <!-- /.container -->
 
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
 
 </body>
 
 </html>
-
-
-
-
-

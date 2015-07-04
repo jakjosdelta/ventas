@@ -56,8 +56,10 @@ $password= $_POST['pass'];
 					//OPCIÓN 2: Usuario logueado correctamente	
 						$_SESSION['id'] = $fila['id'];
 						$_SESSION['user'] = $fila['nombre'];
+				
+				header("location:".$pag."?seleccion2=".$seleccion2."");
 
-						echo "<SCRIPT>window.location='$pag?seleccion2=".$seleccion2."';</SCRIPT>"; 
+						//echo "<SCRIPT>window.location='$pag?seleccion2=".$seleccion2."';</SCRIPT>"; 
 					
 					}else{
 						$_SESSION['id'] = $fila['id'];

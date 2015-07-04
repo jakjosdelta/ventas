@@ -107,7 +107,7 @@
  		while ($row = mysql_fetch_array($this->Consulta_ID)) {
  			echo "<tr>";
  			for ($i=0; $i < $this->numcampos(); $i++) { 
- 				echo "<td>".utf8_encode($row[$i])."</td>";
+ 				echo "<td><a href='productos1.php?seleccion=".utf8_encode($row['nombre'])."'><button class='btn btn-default' style='border:0px;'>".utf8_encode($row[$i])."</button></a></td>";
  			}
  			echo "</tr>";
  		}
@@ -117,36 +117,203 @@
  	}
 
 
+	function verconsulta3(){
+	 		echo "<table class='table'>
+	 		<tbody>";
+	 		while ($row = mysql_fetch_array($this->Consulta_ID)) {
+	 			echo "<tr>";
+	 			for ($i=0; $i < $this->numcampos(); $i++) { 
+ 					echo "<td><a href='productos1.php?seleccion=".utf8_encode(ucwords($row['nombre']))."'><button class='btn btn-default' style='border:0px;'>".utf8_encode($row[$i])."</button></a></td>";
+	 				
+	 			}
+	 			echo "</tr>";
+	 		}
+
+	 		echo "</tbody>
+	 		</table>";
+	 	}
+
  	function listar(){
  		echo "<table>";
  		echo "<tbody>";
 
  		while ($row = mysql_fetch_array($this->Consulta_ID)) {
- 			echo "<tr  class='col-sm-3 col-lg-3 col-md-3'>";
- 			echo "<td>		
- 					<div>
+ 			echo "<tr  class='col-md-3'>";
+ 			echo "<td  class='col-md-3'>		
+ 					<div >
                         <div class='thumbnail'>
-                            <img src='".$row['imagen']."' alt=''>
+                            <a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><img src='".$row['imagen']."' alt='' ></a>
                             <div>
-                            <h4>".utf8_encode($row['nombre'])."</a>
+	                            <div>
+	                                <h5 class='pull-right thumbnail' style='font-size: 150%;'>$ ".$row['precio']."</h5>                                
+	                            </div>
+	                            
+									<a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><h5  style='font-size:85%;'><strong>".utf8_encode($row['nombre'])."</strong></h5></a>
+	                           		 <p>".substr(utf8_encode($row['descripcion']),0,25)."..</p>
+	                            
+                            
                             </div>
-                                <h4 class='pull-right'>$ ".$row['precio']."</h4>                                
-                            <div>
-                            	<p>".substr(utf8_encode($row['descripcion']),0,25)."..</p>
-                            </div>
-                            <div align='center'>
-                            	<button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button>
-                            </div>
+                            <div align='center'>";
+                            if (!@$_SESSION['user']) {
+                            	
+                            	echo "<a href='".$_SERVER['PHP_SELF']."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
+                            }else{
+                            	echo "<a href='validar4.php?tb=carrito&productoid=".$row['id']."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
+
+                            }
+
+
+                            echo "</div>
                          </div>
                      </div>
                   </td>
 				</tr>";
  		}
  		echo "</tbody>";
+ 		echo "</table>";	
+ 		
+ 	}
+
+ 	function listar2(){
+ 		echo "<div class='row col-md-12 col-xs-12 col-sm-12'>";
+ 		echo "<table>";
+ 		echo "<tbody>";
+ 		while ($row = mysql_fetch_array($this->Consulta_ID)) {
+ 			echo "<tr  class='col-md-4 col-xs-4 col-sm-4'>
+ 					<td>
+					<div class='thumbnail'>
+	                        <div>
+	                            <a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><img src='".$row['imagen']."' alt='' ></a>
+	                       	</div>
+	                        <div>
+	                            <h5 class='pull-right thumbnail' style='font-size: 150%;'>$ ".$row['precio']."</h5>                                
+	                           		   
+									<a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><h5  style='font-size:85%;'><strong>".utf8_encode($row['nombre'])."</strong></h5></a>
+	                           		 <p>".substr(utf8_encode($row['descripcion']),0,25)."..</p>
+                            </div>
+                            <div align='center'>";
+                            if (!@$_SESSION['id']) {
+                            	extract($_GET);
+                        		echo "<a href='".$_SERVER['PHP_SELF']."?seleccion=".@$seleccion."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button><a>";
+                            }else{
+                            	
+                        	echo "<a href='validar4.php?tb=carrito&productoid=".$row['id']."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button><a>";
+                            }
+                       echo "</div>
+                    </div>
+
+                     </td>
+                   </tr>";
+ 		}
+		echo "</tbody>";
  		echo "</table>";
+ 		echo "</div>";
+ 		
+ 	}
+
+ 	function listarindividual(){
+ 		
+
+ 		while ($row = mysql_fetch_array($this->Consulta_ID)) {
+ 		echo "<div class='col-md-8'>";
+ 			echo "<div class='thumbnail'>
+                        <div>
+                            <img src='".$row['imagen']."' alt='' >
+                         </div>
+	                     	
+                         
+
+                 </div>
+              </div>";
+
+          echo "<div class='col-md-4'>
+
+							<br><br>
+							<div align='center' class='thumbnail'>  
+								<h2 align='center'><span class='label label-primary'>Precio Clon Shop</span></h2><br> ";
+								extract($_GET);
+							if (@$total) {
+								echo "<h5 class='' style='font-size: 250%;'><strong>$ ".$total."</strong></h5>";
+							}else{
+	                         echo "  <h5 class='' style='font-size: 250%;'><strong>$ ".$row['precio']."</strong></h5> ";                              
+
+							}
+
+	                    echo "</div>
+							<br><br>
+                            <div align='center' class='thumbnail'>";
+                             if (!@$_SESSION['user']) {
+                             	if (@$total) {
+                            		echo "<a href='".$_SERVER['PHP_SELF']."?seleccion3=".$seleccion3."&id=".$id."&total=".$total."'><button class='btn btn-warning btn-lg'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
+									
+								}else{
+			                                                     
+                            		echo "<a href='".$_SERVER['PHP_SELF']."?seleccion3=".$seleccion3."&id=".$id."&total='><button class='btn btn-warning btn-lg'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
+								}
+
+                             }else{
+                            	echo "<a href='validar4.php?tb=carrito&productoid=".$row['id']."'><button class='btn btn-warning btn-lg'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
+                             	
+                             }
+                            echo "</div>
+
+          	</div>";
+
+
+          	echo "<div class='col-md-10' align='justify'>
+				<h5><strong>".utf8_encode($row['nombre'])."</strong></h5>
+	            <p>".utf8_encode($row['descripcion'])."..</p>
+
+          	</div>";
+ 		}
+
+
  		
  	}
  
+
+ function listarcar(){
+ 		
+ 		echo "<table class='table thumbnail'>";
+
+ 		echo "<thead>";
+ 		//mostrar los nombres de los campos
+ 		for ($i=1; $i < $this->numcampos(); $i++) { 
+ 			echo "<td align='center'><strong>".ucwords($this->nombrecampo($i))."</strong></td>";
+ 		}
+ 			echo "<th>Quitar Producto</th>";
+ 		echo "</thead>
+ 			<tbody>";
+ 		while ($row = mysql_fetch_array($this->Consulta_ID)) {
+ 			echo "<tr>";
+ 			for ($i=1; $i < $this->numcampos(); $i++) { 
+ 				if ($i==1) {
+
+ 					echo "<td><img src='".$row['imagen']."' height='100px'></td>";	
+ 				}elseif ($i==4) {
+ 					echo "<td align='center'>
+						<form name='ejemplo2' method='POST'>
+							<input type='number' name='nombre2' id='nombre2' min='1' value=".$row['cantidad'].">
+						</form>
+ 					</td>";
+ 				}else{
+ 					echo "<td align='center'>".utf8_encode($row[$i])."</td>";	
+ 				}
+ 			}
+ 				echo "<td><a href='carrito.php?id=$row[0]&act=1&tb=carrito'><img src='images/eliminar.ico'></a></td>";
+ 			echo "</tr>";
+ 		}
+ 		echo "</tbody>
+ 		</table>";
+ 		
+ 	}
+ 
+ function quitar_tildes($cadena) {
+				$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
+				$permitidas= array ("a","e","i","o","u","A","E","I","O","U","n","N","A","E","I","O","U","a","e","i","o","u","c","C","a","e","i","o","u","A","E","I","O","U","u","o","O","i","a","e","U","I","A","E");
+				$texto = str_replace($no_permitidas, $permitidas ,$cadena);
+				return $texto;
+				}
 ///https://gist.github.com/rlramirez/
  }
 ?>

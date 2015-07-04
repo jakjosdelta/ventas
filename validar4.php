@@ -12,17 +12,17 @@ extract($_GET);
 	$resultado= mysql_query($consulta,$miconexion->conectar($db_name,$db_host, $db_user,$db_password)) or die (mysql_error());
     $filaprod=mysql_fetch_array($resultado, MYSQL_ASSOC);
 
-    $consulta2= "SELECT * FROM carrito where id_usuario=".$_SESSION['id'].""; 
+    $consulta2= "SELECT * FROM carrito where id_usuario=".$_SESSION['id'].";"; 
 	$resultado2= mysql_query($consulta2,$miconexion->conectar($db_name,$db_host, $db_user,$db_password)) or die (mysql_error());
     $filacar=mysql_fetch_array($resultado2, MYSQL_ASSOC);
 
 
 
-    mysql_query("INSERT INTO carrito VALUES('','<img src=".$filaprod['imagen'].">','".$filaprod['nombre']."',".$filaprod['precio'].",1,".$filaprod['precio'].",".$_SESSION['id'].")");
+    mysql_query("INSERT INTO carrito VALUES('','".$filaprod['imagen']."','".$filaprod['nombre']."',".$filaprod['precio'].",1,".$filaprod['precio'].",".$_SESSION['id'].")");
 				//echo 'Se ha registrado con exito';
 	//echo ' <script language="javascript">alert("Usuario registrado con éxito");</script> ';
 	//mysql_close($link);
-	header("location:carrito.php");
+	header("location:carrito.php?tb=".$tb."");
 
 	//$consulta2= "SELECT * FROM carrito where id_usuario=".$_SESSION['id'].""; 
 	//$resultado2= mysql_query($consulta2,$miconexion->conectar($db_name,$db_host, $db_user,$db_password)) or die (mysql_error());
