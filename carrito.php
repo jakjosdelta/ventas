@@ -5,9 +5,26 @@ session_start();
 //no seja entrar hasta que haya un usuario logeado
 extract($_GET);
 if (@$_SESSION['user']) {
-   header("location:index.php");
-}
 
+}else{
+
+    if (@!$_SESSION['user']) {
+    if (@$seleccion) {
+        header("location:productos1.php?seleccion=".$seleccion."");
+    }
+    if(@$seleccionindex=='promo'){
+      header("location:index.php");
+    }
+    if(@$seleccion3){
+      header("location:individual.php?seleccion3=".$seleccion3."&id=".$id."&total=".@$total."");
+    }
+    if(@$seleccion2){
+      header("location:productos1.php?seleccion2=".$seleccion2."");
+    }
+    
+  }
+
+}
 
 
 include("static/site_config.php");
@@ -40,9 +57,9 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     <link href="css/shop-homepage.css" rel="stylesheet">
 
 
-      <?php
-            include("librerias.php");
-      ?>
+<?php
+                   include("librerias.php");
+           ?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -132,11 +149,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
                     echo "<h2 align='center'><span class='label label-default'>Resumen de su carrito de compras</span></h2><br><br>";      
 
                     ?>
-
                      <div class="col-md-12 col-xs-12 col-sm-12">
-
-                     
-
                     <script>
 
                     $(document).ready(function(){

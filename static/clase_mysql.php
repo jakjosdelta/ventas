@@ -134,6 +134,9 @@
 	 	}
 
  	function listar(){
+ 		
+
+ 						
  		echo "<table>";
  		echo "<tbody>";
 
@@ -155,8 +158,10 @@
                             </div>
                             <div align='center'>";
                             if (!@$_SESSION['user']) {
+                            			
+						echo "<a href='".$_SERVER['PHP_SELF']."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
+								 
                             	
-                            	echo "<a href='".$_SERVER['PHP_SELF']."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
                             }else{
                             	echo "<a href='validar4.php?tb=carrito&productoid=".$row['id']."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
 
@@ -259,12 +264,15 @@
 
           	</div>";
 
-
-          	echo "<div class='col-md-10' align='justify'>
-				<h5><strong>".utf8_encode($row['nombre'])."</strong></h5>
-	            <p>".utf8_encode($row['descripcion'])."..</p>
-
-          	</div>";
+          				
+          		echo "<div class='col-md-12'>
+		          		<div class='panel panel-default'>
+						  <div class='panel-heading'><h5><strong>".utf8_encode($row['nombre'])."</strong></h5></div>
+						  <div class='panel-body'>
+						    <p align='justify'>".utf8_encode($row['descripcion'])."</p>
+						  </div>
+						</div>
+          			</div>";
  		}
 
 

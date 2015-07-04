@@ -178,7 +178,7 @@ include("include/menu.php");
 
 
                 <div class="row">
-
+                 
                  <?php
                   
                     extract($_GET);
@@ -197,6 +197,8 @@ include("include/menu.php");
 
                     
                 </div>
+
+
 
 
 

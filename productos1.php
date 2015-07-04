@@ -138,7 +138,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
                     if (@!$seleccion2) {
 
                         if (@!$seleccion) {
-                            $query2 = "SELECT * from productos";
+                            $query2 = "SELECT * from productos where promocion='si'";
                             $miconexion->consulta($query2);
                             $miconexion->listar2();
                             # code...

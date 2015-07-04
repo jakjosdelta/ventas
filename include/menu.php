@@ -98,15 +98,44 @@ $(document).ready(function(){
     </nav>
 
 <form action="validar2.php" method="post"> 
-  <div class="col-lg-4 pull-right">
+  <div class="col-md-5 pull-right">
     <div class="input-group">
       <input type="text" class="form-control" placeholder="Buscar productos" name="buscar">
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit">Go</button>
       </span>
     </div><!-- /input-group -->
+    
 </div>
-</form> 
+</form>
+<?php
+if (@$_SESSION['user']) {
+  $query = "Select count(*) from carrito where id_usuario=".@$_SESSION['id']."";
+  $miconexion->consulta($query);
+  $result = mysql_query($query) or die("error". mysql_error());
+  while ($row = mysql_fetch_array($result)) {
+    if (@$row[0]==0) {
+      echo "<div class='col-md-6 pull-right'>
+        <ul class='nav nav-pills'>
+              <li class='active'>
+               <a href='carrito.php'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Carrito<span class='badge'>(Vacio)</span></a>
+            </ul>
+      </div>";
+
+    }else{
+      echo "<div class='col-md-6 pull-right'>
+        <ul class='nav nav-pills'>
+              <li class='active'>
+               <a href='carrito.php'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Carrito<span class='badge'>".$row[0]."</span></a>
+            </ul>
+      </div>";
+    }
+      
+  }
+}
+
+?> 
+
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
