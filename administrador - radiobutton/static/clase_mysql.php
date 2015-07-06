@@ -1,3 +1,14 @@
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="DataTables-1.10.7/media/css/jquery.dataTables.css">
+  
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.js"></script>
+  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+
+
+
 <?php
 
 
@@ -80,7 +91,7 @@ class clase_mysql{
 		//administrador.php?act=3&pid=".$administrador."
 		echo "<div class='table table-responsive'>";
 		echo "<div><br></div>";
-		echo "<table class='table table-striped'>";
+		echo "<table id='contenido'class='table table-striped'>";
 		echo "<thead>
 		<tr>";
 
@@ -263,7 +274,7 @@ class clase_mysql{
  		}
 
  		function listaradmin(){
-		echo "<table;>
+		echo "<table id='admin';>
 				<tbody>";
 			
  		while ($row = mysql_fetch_array($this->consulta_ID)) {
@@ -304,3 +315,25 @@ class clase_mysql{
 	}
 }
 ?>
+
+<script>
+
+$(document).ready( function () {
+    $('#contenido').DataTable();
+} );
+
+$(document).ready( function () {
+    $('#admin').DataTable();
+} );
+
+
+$(document).ready(function () {
+    $('#fadeandscale').popup({
+        pcontaineradmin: '.container',
+        transition: 'all 0.3s'
+    });
+
+});
+
+
+</script>

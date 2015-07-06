@@ -30,7 +30,7 @@ $miconexion ->conectar($db_name,$db_host, $db_user, $db_password);
 
 <script type="text/javascript">
 $(document).ready( function () {
-    $('#tablaid').DataTable();
+    $('#contenido').DataTable();
 } );
 
 </script>
@@ -57,9 +57,16 @@ $(document).ready( function () {
 
 
 
+<!-- Data Tables link -->
 
-
-
+<!--  DataTables CSS  -->
+<link rel="stylesheet" type="text/css" href="/DataTables-1.10.7/media/css/jquery.dataTables.css">
+  
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.js"></script>
+  
+<!-- DataTables -->
+<script type="text/javascript" charset="utf8" src="/DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
 
 
     <title>Gestión de Productos</title>
@@ -246,6 +253,9 @@ $(document).ready(function () {
     });
 
 });
+
+
+
 </script>
 
 <!-- Fade & scale -->
@@ -309,6 +319,16 @@ $(document).ready(function () {
 </div>
 
 <script>
+
+$(document).ready( function () {
+    $('#contenido').DataTable();
+} );
+
+$(document).ready( function () {
+    $('#admin').DataTable();
+} );
+
+
 $(document).ready(function () {
     $('#fadeandscale').popup({
         pcontaineradmin: '.container',
@@ -316,6 +336,8 @@ $(document).ready(function () {
     });
 
 });
+
+
 </script>
 
 
