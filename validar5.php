@@ -7,15 +7,14 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
 extract($_GET);
 		//Inicio de variables de sesión
 	session_start();
-//variables que vienen  $tb y $productoid
+//variables que vienen  cant valor unitario  y el id del producto y la suma total
 
-    $consulta2= "SELECT * FROM carrito where id_usuario=".$_SESSION['id'].""; 
-	$resultado2= mysql_query($consulta2,$miconexion->conectar($db_name,$db_host, $db_user,$db_password)) or die (mysql_error());
-    $filacar=mysql_fetch_array($resultado2, MYSQL_ASSOC);
+	$sentencia="update carrito set cantidad=".$cant.", total=".$cant*$unitario." where id=".$id."";
+	$miconexion->consulta($sentencia);
+	//$resent=mysql_query($sentencia);	
 
-
-	$sentencia="update carrito set cantidad=".$cant.", total=".$cant*$filacar['precio_unitario']." where id=".$filacar['id']."";
-	$resent=mysql_query($sentencia);
+                       //echo "<h2 align='center'><span class='label label-primary'>TOTAL A PAGAR</span></h2><br>";
+                       //echo "<h2 align='center'>".$suma."</h2><br><br>";	
 
 	header("location:carrito.php");
 

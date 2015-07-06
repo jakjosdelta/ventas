@@ -4,25 +4,11 @@ session_start();
 
 //no seja entrar hasta que haya un usuario logeado
 extract($_GET);
-if (@$_SESSION['user']) {
-
+if (@!$_SESSION['user']) {
+header("location:index.php");
 }else{
 
-    if (@!$_SESSION['user']) {
-    if (@$seleccion) {
-        header("location:productos1.php?seleccion=".$seleccion."");
-    }
-    if(@$seleccionindex=='promo'){
-      header("location:index.php");
-    }
-    if(@$seleccion3){
-      header("location:individual.php?seleccion3=".$seleccion3."&id=".$id."&total=".@$total."");
-    }
-    if(@$seleccion2){
-      header("location:productos1.php?seleccion2=".$seleccion2."");
-    }
-    
-  }
+  
 
 }
 
@@ -142,14 +128,15 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
                 
             </div>
 
-            <div class="col-md-9 thumbnail" >
+            <div class="col-md-9 thumbnail" align="center">
                     <?php
                     extract($_GET);
 
                     echo "<h2 align='center'><span class='label label-default'>Resumen de su carrito de compras</span></h2><br><br>";      
 
                     ?>
-                     <div class="col-md-12 col-xs-12 col-sm-12">
+                     <div class="col-md-10 col-xs-10 col-sm-10">
+                     <!--
                     <script>
 
                     $(document).ready(function(){
@@ -162,7 +149,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
                     });
          
                         
-                    </script>
+                    </script>-->
                 
                      <?php
                     
@@ -180,24 +167,24 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
                           $miconexion->consulta("delete from ".$tb."  where id=".$id."");
                          // $miconexion->verconsulta($tb);
                           echo "<script>location.href='".$_SERVER['PHP_SELF']."'</script>";
-                      }     
+                      } 
+
+                      $query3 = "SELECT * from carrito where id_usuario=".$_SESSION['id']."";
+                        $miconexion->consulta($query3);
+                        $miconexion->carsuma();    
                     ?>
                             
                       </div>
-                       
+                       <div class="col-md-2 col-xs-2 col-sm-2">
+                         <script type="text/javascript">
+                          var bannersnack_embed = {"hash":"bc90g3mc4","width":120,"height":500,"t":1436172624,"userId":19741081,"bgcolor":"#3D3D3D","wmode":"opaque"};
+                          </script>
+                          <script type="text/javascript" src="http://files.bannersnack.com/iframe/embed.js"></script>
+                       </div>
                        <?php
-                          $query3 = "SELECT * from carrito where id_usuario=".$_SESSION['id']."";
-                           $miconexion->consulta($query3); 
-                          $suma=0;
-                          while (@$row = mysql_fetch_array($query3)) {
-                                $suma=$suma+$row['total'];
-                          }
-
-                       echo "<h2 align='center'><span class='label label-primary'>TOTAL A PAGAR</span></h2><br>";
-                       echo "<h2 align='center'>".$suma."</h2><br><br>";
-
+                        
                        ?>
-
+                      
 
                 </div>
 

@@ -142,7 +142,7 @@
 
  		while ($row = mysql_fetch_array($this->Consulta_ID)) {
  			echo "<tr  class='col-md-3'>";
- 			echo "<td  class='col-md-3'>		
+ 			echo "<td>		
  					<div >
                         <div class='thumbnail'>
                             <a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><img src='".$row['imagen']."' alt='' ></a>
@@ -281,39 +281,70 @@
  
 
  function listarcar(){
- 		
- 		echo "<table class='table thumbnail'>";
+ 		echo "<div class='table-responsive' >";
+ 		echo "<table class='table-condensed thumbnail' align='center'>";
 
- 		echo "<thead>";
+ 		echo "<thead >";
  		//mostrar los nombres de los campos
- 		for ($i=1; $i < $this->numcampos(); $i++) { 
- 			echo "<td align='center'><strong>".ucwords($this->nombrecampo($i))."</strong></td>";
+ 		for ($i=1; $i < $this->numcampos()-1; $i++) {
+ 			echo "<td align='center' ><strong>".ucwords($this->nombrecampo($i))."</strong></td>";
  		}
  			echo "<th>Quitar Producto</th>";
  		echo "</thead>
  			<tbody>";
  		while ($row = mysql_fetch_array($this->Consulta_ID)) {
+ 			 
  			echo "<tr>";
- 			for ($i=1; $i < $this->numcampos(); $i++) { 
+ 			for ($i=1; $i < $this->numcampos()-1; $i++) { 
  				if ($i==1) {
 
  					echo "<td><img src='".$row['imagen']."' height='100px'></td>";	
  				}elseif ($i==4) {
+ 					echo "<script>
+
+                    $(document).ready(function(){
+
+                      $('#nombre".$row['id']."').change(function(){
+                        
+                        window.location='validar5.php?cant='+$(this).val()+'&id=".$row['id']."&unitario=".$row['precio unitario']."';
+                      });
+
+                    });
+                        
+                   </script>
+                   ";
  					echo "<td align='center'>
-						<form name='ejemplo2' method='POST'>
-							<input type='number' name='nombre2' id='nombre2' min='1' value=".$row['cantidad'].">
+						<form name='ejemplo0' method='POST'>
+							<input type='number' name='nombre".$row['id']."' id='nombre".$row['id']."' min='1' value=".$row['cantidad'].">
 						</form>
  					</td>";
+ 				
  				}else{
  					echo "<td align='center'>".utf8_encode($row[$i])."</td>";	
  				}
+ 				
  			}
  				echo "<td><a href='carrito.php?id=$row[0]&act=1&tb=carrito'><img src='images/eliminar.ico'></a></td>";
  			echo "</tr>";
+
  		}
  		echo "</tbody>
- 		</table>";
- 		
+ 		</table>
+ 		</div>";
+ 	}
+
+ 	function carsuma(){
+ 		$sumatot=0.00;
+ 		while ($row = mysql_fetch_array($this->Consulta_ID)) {
+ 			$sumatot=$sumatot+$row['total'];
+ 		}
+ 		echo "<div class='col-md-8 col-xs-8 col-sm-8'>
+ 		    <h2 align='right'><span class='label label-primary'>TOTAL A PAGAR</span></h2><br>
+ 		</div>
+ 		<div class='col-md-4 col-xs-4 col-sm-4'>
+ 			<h2 align='center' class='pull-left thumbnail'>$  ".$sumatot."</h2><br><br>
+ 		</div>";
+
  	}
  
  function quitar_tildes($cadena) {
@@ -325,3 +356,5 @@
 ///https://gist.github.com/rlramirez/
  }
 ?>
+
+                     
