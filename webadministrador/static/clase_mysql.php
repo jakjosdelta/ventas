@@ -123,11 +123,18 @@ class clase_mysql{
  					}
  					echo"</select>";
  					echo"<div><br></div>";
- 				}
-
- 				else{
-	 				echo $this->nombrecampo($i).": <input name='".$this->nombrecampo($i)."'class='form-control'  placeholder='".$this->nombrecampo($i)."'  required autofocus><br>";
-	 			}
+ 				}else{
+ 					if (($this->nombrecampo($i))=='promocion') {
+	 					echo "<p>Promoción: </p>";
+	 					echo"<select name='promocion'>";
+	 					echo "<option value='si'>Si</option>";
+	 					echo "<option value='no'>No</option>";
+	 					echo"</select>";
+	 					echo"<div><br></div>";
+ 					}else{
+	 					echo $this->nombrecampo($i).": <input name='".$this->nombrecampo($i)."'class='form-control'  placeholder='".$this->nombrecampo($i)."'  required autofocus><br>";
+	 				}
+ 				} 				
 	 		}
 	 		echo "<input type='hidden' name='bandera' value='3' >";
 	 		echo "<center><input class='myButton2' type='submit' value='Guardar'></center>";
@@ -194,19 +201,27 @@ class clase_mysql{
  		for ($i=1; $i < $this->numcampos(); $i++) {
  			if($editar=='2'){
  				for ($i=1; $i < $this->numcampos(); $i++) {
- 					if (($this->nombrecampo($i))=='nombre_cat'){
- 						echo "<p>Categoría: </p>";
-						utf8_encode($row['nombre']);
-						echo"<select name='nombre_cat'>";
-						$sql = mysql_query("select `nombre` from `categorias`");
-						while ($row = mysql_fetch_array($sql)){
-							echo "<option value='".utf8_encode($row['nombre'])."'>".utf8_encode($row['nombre'])."</option>";
+ 					if (($this->nombrecampo($i))=='nombre_cat') {
+	 					echo "<p>Categoría: </p>";
+	 					echo"<select name='nombre_cat'>";
+	 					$sql = mysql_query("select `nombre` from `categorias`");
+	 					while ($row = mysql_fetch_array($sql)){
+	 						echo "<option value='".utf8_encode($row['nombre'])."'>" . utf8_encode($row['nombre']) . "</option>";
+	 					}
+	 					echo"</select>";
+	 					echo"<div><br></div>";
+	 				}else{
+	 					if (($this->nombrecampo($i))=='promocion') {
+		 					echo "<p>Promoción: </p>";
+		 					echo"<select name='promocion'>";
+		 					echo "<option value='si'>Si</option>";
+		 					echo "<option value='no'>No</option>";
+		 					echo"</select>";
+		 					echo"<div><br></div>";
+	 					}else{
+							echo $this->nombrecampo($i).": <input name='".utf8_encode($this->nombrecampo($i))."'class='form-control' value='".utf8_encode($row[$this->nombrecampo($i)])."' placeholder='".$this->nombrecampo($i)."'><br>";
 						}
-						echo"</select>";
-						echo"<div><br></div>";
-					}else{
-						echo $this->nombrecampo($i).": <input name='".utf8_encode($this->nombrecampo($i))."'class='form-control' value='".utf8_encode($row[$this->nombrecampo($i)])."' placeholder='".$this->nombrecampo($i)."'><br>";
-					}
+	 				}
 				}
  			}
  			else{

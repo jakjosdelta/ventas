@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -18,6 +21,12 @@
             <li>
                 <a href="administradorbusqueda.php">Ofertas</a>
            </li>
+           <li><?php
+                    echo "<li class='nav pull-right'>
+                    <a href='static/desconectar_usuario.php'><button class='btn btn-info'>Cerrar Cesión</button></a></li>";
+                    echo "<li class='nav pull-right'>
+                    <a href='#'><button class='btn btn-info'>".$_SESSION['user']."</button></a></li>";
+           ?></li>;
         </ul>
     </div>
     <!-- /.navbar-collapse -->

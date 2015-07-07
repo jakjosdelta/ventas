@@ -281,11 +281,10 @@ $(document).ready(function() {
       });
     </script>
     <!-- Footer -->
-    <div id="footer">
-      <ul class="copyright">
-        <li>&copy; Untitled. All rights reserved.</li><li>UTPL</li>
-      </ul>
-    </div>
+     <?php
+        include("../footer2.php");
+     ?>
+
     <script src="assets/js/jquery.scrolly.min.js"></script>
     <script src="assets/js/jquery.scrollzer.min.js"></script>
     <script src="assets/js/skel.min.js"></script>
