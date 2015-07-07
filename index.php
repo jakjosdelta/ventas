@@ -173,7 +173,7 @@ include("include/menu.php");
                                              while ($row = mysql_fetch_array($result)) {
                                                 if ($k==0) {
 
-                                                    $tot=$row['precio']+$row['descuento'];
+                                                    $tot=$row['precio']-$row['descuento'];
                                                     # code...
                                                     echo "<div class='item active'>
                                                         <div class='row'>  <h2 align='center'><span class='label label-default'>".utf8_encode($row['nombre'])."</span></h2> 
@@ -195,7 +195,7 @@ include("include/menu.php");
                                                         </div>
                                                     </div>";
                                                 }else{
-                                                    $tot=$row['precio']+$row['descuento'];
+                                                    $tot=$row['precio']-$row['descuento'];
                                                     echo "<div class='item'>
                                                         <div class='row'>  <h2 align='center'><span class='label label-default'>".utf8_encode($row['nombre'])."</span></h2> 
                                                           <div class='col-md-4 col-xs-4 thumbnail' align='center' >
