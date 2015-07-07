@@ -139,7 +139,7 @@
  						
  		echo "<table>";
  		echo "<tbody>";
-
+ 		$mod=5;
  		while ($row = mysql_fetch_array($this->Consulta_ID)) {
  			echo "<tr  class='col-md-3'>";
  			echo "<td>		
@@ -158,9 +158,37 @@
                             </div>
                             <div align='center'>";
                             if (!@$_SESSION['user']) {
-                            			
-						echo "<a href='".$_SERVER['PHP_SELF']."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
-								 
+                            	//Parte para mostrar los mensajes en modal
+								echo "<button type='button' class='btn btn-warning' id='myBtn".$mod."'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button>";
+								 echo " 
+				                       <div class='modal fade' id='myModal".$mod."' role='dialog'>
+				                          <div class='modal-dialog'>
+				                          
+				                            <div class='modal-content'>
+				                              <div class='modal-header'>
+				                                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+				                                <h4 class='modal-title'>Inicia cesión</h4>
+				                              </div>
+				                              <div class='modal-body'>
+				                                <p><strong>Inicia cesión</strong> para poder añadir productos al carrito.</p>
+				                              </div>
+				                              <div class='modal-footer'>
+				                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+				                              </div>
+				                            </div>
+				                            
+				                          </div>
+				                        </div> 
+
+				                       
+				                      <script>
+				                      $(document).ready(function(){
+				                          $('#myBtn".$mod."').click(function(){
+				                              $('#myModal".$mod."').modal('show');
+				                          });
+
+				                      });
+				                      </script>";  
                             	
                             }else{
                             	echo "<a href='validar4.php?tb=carrito&productoid=".$row['id']."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
@@ -173,6 +201,7 @@
                      </div>
                   </td>
 				</tr>";
+				$mod++;
  		}
  		echo "</tbody>";
  		echo "</table>";	
@@ -183,6 +212,7 @@
  		echo "<div class='row col-md-12 col-xs-12 col-sm-12'>";
  		echo "<table>";
  		echo "<tbody>";
+ 		$list2=5;
  		while ($row = mysql_fetch_array($this->Consulta_ID)) {
  			echo "<tr  class='col-md-4 col-xs-4 col-sm-4'>
  					<td>
@@ -199,7 +229,37 @@
                             <div align='center'>";
                             if (!@$_SESSION['id']) {
                             	extract($_GET);
-                        		echo "<a href='".$_SERVER['PHP_SELF']."?seleccion=".@$seleccion."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button><a>";
+                        		//Parte para mostrar los mensajes en modal
+								echo "<button type='button' class='btn btn-warning' id='myBtn".$list2."'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button>";
+								 echo " 
+				                       <div class='modal fade' id='myModal".$list2."' role='dialog'>
+				                          <div class='modal-dialog'>
+				                          
+				                            <div class='modal-content'>
+				                              <div class='modal-header'>
+				                                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+				                                <h4 class='modal-title'>Inicia cesión</h4>
+				                              </div>
+				                              <div class='modal-body'>
+				                                <p><strong>Inicia cesión</strong> para poder añadir productos al carrito.</p>
+				                              </div>
+				                              <div class='modal-footer'>
+				                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+				                              </div>
+				                            </div>
+				                            
+				                          </div>
+				                        </div> 
+
+				                       
+				                      <script>
+				                      $(document).ready(function(){
+				                          $('#myBtn".$list2."').click(function(){
+				                              $('#myModal".$list2."').modal('show');
+				                          });
+
+				                      });
+				                      </script>";  
                             }else{
                             	
                         	echo "<a href='validar4.php?tb=carrito&productoid=".$row['id']."'><button class='btn btn-warning'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button><a>";
@@ -209,6 +269,7 @@
 
                      </td>
                    </tr>";
+                   $list2++;
  		}
 		echo "</tbody>";
  		echo "</table>";
@@ -218,7 +279,7 @@
 
  	function listarindividual(){
  		
-
+ 		$mod=5;
  		while ($row = mysql_fetch_array($this->Consulta_ID)) {
  		echo "<div class='col-md-8'>";
  			echo "<div class='thumbnail'>
@@ -249,11 +310,69 @@
                             <div align='center' class='thumbnail'>";
                              if (!@$_SESSION['user']) {
                              	if (@$total) {
-                            		echo "<a href='".$_SERVER['PHP_SELF']."?seleccion3=".$seleccion3."&id=".$id."&total=".$total."'><button class='btn btn-warning btn-lg'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
+                            		echo "<button type='button' class='btn btn-warning' id='myBtn".$mod."'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button>";
+								 echo " 
+				                       <div class='modal fade' id='myModal".$mod."' role='dialog'>
+				                          <div class='modal-dialog'>
+				                          
+				                            <div class='modal-content'>
+				                              <div class='modal-header'>
+				                                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+				                                <h4 class='modal-title'>Inicia cesión</h4>
+				                              </div>
+				                              <div class='modal-body'>
+				                                <p><strong>Inicia cesión</strong> para poder añadir productos al carrito.</p>
+				                              </div>
+				                              <div class='modal-footer'>
+				                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+				                              </div>
+				                            </div>
+				                            
+				                          </div>
+				                        </div> 
+
+				                       
+				                      <script>
+				                      $(document).ready(function(){
+				                          $('#myBtn".$mod."').click(function(){
+				                              $('#myModal".$mod."').modal('show');
+				                          });
+
+				                      });
+				                      </script>";  
 									
 								}else{
 			                                                     
-                            		echo "<a href='".$_SERVER['PHP_SELF']."?seleccion3=".$seleccion3."&id=".$id."&total='><button class='btn btn-warning btn-lg'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button></a>";
+                            		echo "<button type='button' class='btn btn-warning' id='myBtn".$mod."'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button>";
+								 echo " 
+				                       <div class='modal fade' id='myModal".$mod."' role='dialog'>
+				                          <div class='modal-dialog'>
+				                          
+				                            <div class='modal-content'>
+				                              <div class='modal-header'>
+				                                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+				                                <h4 class='modal-title'>Inicia cesión</h4>
+				                              </div>
+				                              <div class='modal-body'>
+				                                <p><strong>Inicia cesión</strong> para poder añadir productos al carrito.</p>
+				                              </div>
+				                              <div class='modal-footer'>
+				                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+				                              </div>
+				                            </div>
+				                            
+				                          </div>
+				                        </div> 
+
+				                       
+				                      <script>
+				                      $(document).ready(function(){
+				                          $('#myBtn".$mod."').click(function(){
+				                              $('#myModal".$mod."').modal('show');
+				                          });
+
+				                      });
+				                      </script>";  
 								}
 
                              }else{
@@ -273,6 +392,8 @@
 						  </div>
 						</div>
           			</div>";
+
+          $mod++;
  		}
 
 

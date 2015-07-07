@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-                <?php
+<?php
 session_start();
 include("static/site_config.php");
 include("static/clase_mysql.php");
@@ -24,7 +24,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     <title>Shop Homepage</title>
 
     <!-- Bootstrap Core CSS -->
- 
+       <link rel="stylesheet" href="assets/css/main1.css" />
     <?php
       include("librerias.php");
     ?>
@@ -36,6 +36,69 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+
+<?php
+
+extract($_GET);
+
+if (@$reg==1) {
+  echo "
+  <div class='modal fade' id='myModal3' role='dialog'>
+    <div class='modal-dialog'>
+
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal'>&times;</button>
+          <h4 class='modal-title glyphicon glyphicon-thumbs-up'> Registrado</h4>
+        </div>
+        <div class='modal-body'>
+          <p>Se ha <strong>Registrado</strong> exitosamente en Clon Shop.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>";
+ 
+echo "
+<script>
+$(document).ready(function(){
+    $('#myModal3').modal('show');     
+});
+</script>";
+}
+
+if (@$reg==2) {
+  echo "
+
+
+
+  <div class='modal fade' id='myModal4' role='dialog'>
+    <div class='modal-dialog'>
+
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal'>&times;</button>
+          <h4 class='modal-title glyphicon glyphicon-remove'> Error de registro</h4>
+        </div>
+        <div class='modal-body'>
+          <p>Contraseñas <strong>Incorrectas</strong> intente registrarse nuevamente.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>";
+ 
+echo "
+<script>
+$(document).ready(function(){
+    $('#myModal4').modal('show');     
+});
+</script>";
+}
+
+
+?>
 
 </head>
 
@@ -192,13 +255,14 @@ include("include/menu.php");
                         $miconexion->consulta($query2);
                         $miconexion->listar();
                     }
-                             
+                           
+
                     ?>
 
                     
                 </div>
 
-
+  
 
 
 
@@ -210,18 +274,37 @@ include("include/menu.php");
 
     <div class="container">
 
-        <hr>
+
 
         <!-- Footer -->
         <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
+            <div class="col-md-7 thumbnail">
+              <footer id="footer">
+              <ul class="icons">
+                <li><a href="https://www.facebook.com/JakjosSylar" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+                <li><a href="https://github.com/jakjosdelta" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="https://plus.google.com/u/0/110553372623378172933" class="icon alt fa-google"><span class="label">Google</span></a></li>
+
+              </ul>
+              
+
+               
+
+            </footer>
+            
+            </div class="col-md-5 thumbnail">
+            <div>
+               <script type="text/javascript">
+                var bannersnack_embed = {"hash":"bc9563mc4","width":400,"height":80,"t":1436294255,"userId":19741081,"bgcolor":"#3D3D3D","wmode":"opaque"};
+                </script>
+                <script type="text/javascript" src="http://files.bannersnack.com/iframe/embed.js"></script>
             </div>
+
         </footer>
 
     </div>
+
+    
     <!-- /.container -->
 
     <!-- jQuery 
