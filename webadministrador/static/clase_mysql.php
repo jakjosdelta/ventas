@@ -76,12 +76,17 @@ class clase_mysql{
 			echo "<th>".$this->nombrecampo($i)."</th>";
 		}
 	}
+
+
 	function verconsultadmin($administrador){
-		
 		while ($row = mysql_fetch_array($this->consulta_ID)) {
 			echo "<tr>";
 			for ($i=1; $i < $this->numcampos() ; $i++) { 
-				echo "<td>".utf8_encode($row[$i])."</td>";
+				if (($this->nombrecampo($i))=='descripcion') {
+					echo "<td>".utf8_encode(substr($row[$i],0,50))."...</td>";
+ 				}else{
+ 					echo "<td>".utf8_encode($row[$i])."</td>";
+ 				}
 			}
 				switch ($administrador) {
 					case 1:
