@@ -131,7 +131,24 @@ class clase_mysql{
  				}
 
  				else{
+
+ 					//FERLUCHIN
+
+ 					if (($this->nombrecampo($i))=='imagen') {
+ 						echo "<h3> IMAGEN </h3>";
+ 						//echo $this->nombrecampo($i).": <input name='".$this->nombrecampo($i)."'class='form-control'  placeholder='".$this->nombrecampo($i)."'  required autofocus><br>";
+ 					
+				echo "<h3>File Upload:</h3>";
+					echo "Selecciona un archivo a subir: <br />";	
+						echo '<form action="/php/file_uploader.php" method="post" enctype="multipart/form-data">';
+						echo '<input type="file" name="file" size="50" />';
+						echo "<br />";
+						
+						echo "</form>";
+
+ 				}	else {
 	 				echo $this->nombrecampo($i).": <input name='".$this->nombrecampo($i)."'class='form-control'  placeholder='".$this->nombrecampo($i)."'  required autofocus><br>";
+	 				}
 	 			}
 	 		}
 	 		echo "<input type='hidden' name='bandera' value='3' >";
