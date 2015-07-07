@@ -36,7 +36,7 @@ if ($tipo=="login") {
 						$_SESSION['id'] = $fila['id'];
 						$_SESSION['user'] = $fila['nombre'];
 					
-						header("Location:administrador.php");
+						header("Location:webadministrador/administrador.php");
 						
 						//Definimos las variables de sesión y redirigimos a la página de usuario
 					}
@@ -64,7 +64,7 @@ if ($tipo=="login") {
 						$_SESSION['id'] = $fila['id'];
 						$_SESSION['user'] = $fila['nombre'];
 					
-						header("Location:administrador.php");
+						header("Location:webadministrador/administrador.php");
 						
 						//Definimos las variables de sesión y redirigimos a la página de usuario
 					}
@@ -91,7 +91,7 @@ if ($tipo=="login") {
 						$_SESSION['id'] = $fila['id'];
 						$_SESSION['user'] = $fila['nombre'];
 					
-						header("Location:adm/administrador.php");
+						header("Location:webadministrador/administrador.php");
 						
 						//Definimos las variables de sesión y redirigimos a la página de usuario
 					}
