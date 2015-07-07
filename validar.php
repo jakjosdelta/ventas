@@ -18,8 +18,7 @@ $password= $_POST['pass'];
 	//OPCIÓN 1: Si el usuario NO existe o los datos son INCORRRECTOS
 
 
-
-
+if ($tipo=="login") {
 	if (@$seleccion) {
 
 			if (!$fila['id']){ 
@@ -73,30 +72,7 @@ $password= $_POST['pass'];
 			}
 	}
 
-	if (@$seleccion3) {
-
-			if (!$fila['id']){ 
-				header("location:".$pag."?seleccion3=".$seleccion3."&id=".$id."&total=".@$total."");
-			}else{
-					if ($fila['rol']==1) {	
-						
-					//OPCIÓN 2: Usuario logueado correctamente	
-						$_SESSION['id'] = $fila['id'];
-						$_SESSION['user'] = $fila['nombre'];
-
-						echo "<SCRIPT>window.location='$pag?seleccion3=".$seleccion3."&id=".$id."&total=".@$total."';</SCRIPT>"; 
-					
-					}else{
-						$_SESSION['id'] = $fila['id'];
-						$_SESSION['user'] = $fila['nombre'];
-					
-						header("Location:administrador.php");
-						
-						//Definimos las variables de sesión y redirigimos a la página de usuario
-					}
-				
-			}
-	}
+	
 
 	if (!@$seleccion) {
 
@@ -109,19 +85,39 @@ $password= $_POST['pass'];
 						$_SESSION['id'] = $fila['id'];
 						$_SESSION['user'] = $fila['nombre'];
 
-						echo "<SCRIPT>window.location='$pag';</SCRIPT>"; 
+						echo "<SCRIPT>window.location='$pag?seleccion3=".@$seleccion3."&id=".@$id."&total=".@$total."';</SCRIPT>"; 
 					
 					}else{
 						$_SESSION['id'] = $fila['id'];
 						$_SESSION['user'] = $fila['nombre'];
 					
-						header("Location:administrador.php");
+						header("Location:adm/administrador.php");
 						
 						//Definimos las variables de sesión y redirigimos a la página de usuario
 					}
 				
 			}
 	}
+}else{
+
+	@$nombre= $_POST['nombre'];
+	@$correo= $_POST['correo'];
+	@$pass1= $_POST['pass1'];
+	@$pass2= $_POST['pass2'];
+	if ($pass1==$pass2) {
+		//Si las contraseñas coinciden se hace el registro
+		$sentencia="INSERT INTO usuarios (id, nombre, correo, pass, rol) VALUES ('','".$nombre."','".$correo."','".$pass1."',1)";
+		$miconexion->consulta($sentencia);
+		header("Location:index.php?reg=1");
+	}else{
+        //Si las contraseñas estan mal no se hace el registro
+        header("Location:index.php?reg=2");
+	}
+
+
+}
+
+	
 		
 
 	

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-                <?php
+<?php
 session_start();
 include("static/site_config.php");
 include("static/clase_mysql.php");
@@ -24,7 +24,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     <title>Shop Homepage</title>
 
     <!-- Bootstrap Core CSS -->
- 
+       <link rel="stylesheet" href="assets/css/main1.css" />
     <?php
       include("librerias.php");
     ?>
@@ -36,6 +36,69 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+
+<?php
+
+extract($_GET);
+
+if (@$reg==1) {
+  echo "
+  <div class='modal fade' id='myModal3' role='dialog'>
+    <div class='modal-dialog'>
+
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal'>&times;</button>
+          <h4 class='modal-title glyphicon glyphicon-thumbs-up'> Registrado</h4>
+        </div>
+        <div class='modal-body'>
+          <p>Se ha <strong>Registrado</strong> exitosamente en Clon Shop.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>";
+ 
+echo "
+<script>
+$(document).ready(function(){
+    $('#myModal3').modal('show');     
+});
+</script>";
+}
+
+if (@$reg==2) {
+  echo "
+
+
+
+  <div class='modal fade' id='myModal4' role='dialog'>
+    <div class='modal-dialog'>
+
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <button type='button' class='close' data-dismiss='modal'>&times;</button>
+          <h4 class='modal-title glyphicon glyphicon-remove'> Error de registro</h4>
+        </div>
+        <div class='modal-body'>
+          <p>Contraseñas <strong>Incorrectas</strong> intente registrarse nuevamente.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>";
+ 
+echo "
+<script>
+$(document).ready(function(){
+    $('#myModal4').modal('show');     
+});
+</script>";
+}
+
+
+?>
 
 </head>
 
@@ -192,13 +255,14 @@ include("include/menu.php");
                         $miconexion->consulta($query2);
                         $miconexion->listar();
                     }
-                             
+                           
+
                     ?>
 
                     
                 </div>
 
-
+  
 
 
 
@@ -210,18 +274,16 @@ include("include/menu.php");
 
     <div class="container">
 
-        <hr>
+
 
         <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
+       <?php
+        include("footer.php");
+       ?>
 
     </div>
+
+    
     <!-- /.container -->
 
     <!-- jQuery 

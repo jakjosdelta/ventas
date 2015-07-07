@@ -6,6 +6,14 @@ $(document).ready(function(){
 });
 </script>  
 
+<script>
+$(document).ready(function(){
+    $("#myBtn2").click(function(){
+        $("#myModal2").modal();
+    });
+});
+</script>  
+
 <style type="text/css">
     .modal-header, h4, .close {
       background-color: #5cb85c;
@@ -137,18 +145,19 @@ if (@$_SESSION['user']) {
 ?> 
 
 
-  <!-- Modal -->
+  <!-- Modal  para el login-->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
+
         <div class="modal-header" style="padding:35px 50px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" action="validar.php?pag=<?php echo $nombre_archivo ?>" method="post">
+          <form role="form" action="validar.php?tipo=login&pag=<?php extract($_GET); echo $nombre_archivo ?>&seleccion=<?php extract($_GET);echo @$seleccion ?>&seleccion2=<?php extract($_GET); echo @$seleccion2 ?>&seleccion3=<?php extract($_GET); echo @$seleccion3; ?>&id=<?php extract($_GET); echo @$id; ?>&total=<?php extract($_GET); echo @$total; ?>" method="post">
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Ingrese su correo</label>
               <input type="text" class="form-control" id="usrname" placeholder="Enter email" name="user">
@@ -162,7 +171,7 @@ if (@$_SESSION['user']) {
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-          <p>No estas Registrado <a href="#">registrate</a></p>
+          <p>No estas Registrado <a href='#myBtn2' class='login-window' id='myBtn2'><button class='btn btn-primary'>Regístrate</button></a></p>
           
         </div>
       </div>
@@ -170,3 +179,44 @@ if (@$_SESSION['user']) {
     </div>
   </div> 
  
+
+ <!-- Modal  para el registro-->
+  <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-file"></span>Registro de usuario</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form" action="validar.php?tipo=registro&pag=<?php extract($_GET); echo $nombre_archivo ?>&seleccion=<?php extract($_GET);echo @$seleccion ?>&seleccion2=<?php extract($_GET); echo @$seleccion2 ?>&seleccion3=<?php extract($_GET); echo @$seleccion3 ?>&id=<?php extract($_GET); echo @$id?>&total=<?php extract($_GET); echo @$total ?>" method="post">
+          
+           <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Ingrese su nombre completo</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter name" name="nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-pencil"></span> Ingrese su correo</label>
+              <input type="email" class="form-control" id="usrname" placeholder="Enter email" name="correo" required>
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span>Ingrese Password</label>
+              <input type="password" class="form-control" id="psw" placeholder="Enter password" name="pass1" required>
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span>Repita Password</label>
+              <input type="password" class="form-control" id="psw" placeholder="Enter password" name="pass2" required>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-duplicate"></span>  Registrarse</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div> 
