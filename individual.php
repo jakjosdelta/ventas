@@ -23,7 +23,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-        
+        <link rel="stylesheet" href="assets/css/main1.css" />
     <?php
     include("librerias.php");
     ?>

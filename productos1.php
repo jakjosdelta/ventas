@@ -18,6 +18,7 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="assets/css/main1.css" />
 
     <?php
       include("librerias.php");
@@ -169,16 +170,9 @@ $miconexion->conectar($db_name,$db_host, $db_user,$db_password);
 
     <div class="container">
 
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
+         <?php
+        include("footer.php");
+       ?>
 
     </div>
     <!-- /.container -->
