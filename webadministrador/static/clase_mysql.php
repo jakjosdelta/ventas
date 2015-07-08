@@ -75,6 +75,8 @@ class clase_mysql{
 		for ($i=1; $i < $this->numcampos() ; $i++) { 
 			echo "<th>".$this->nombrecampo($i)."</th>";
 		}
+
+
 	}
 	function verconsultadmin($administrador){
 		while ($row = mysql_fetch_array($this->consulta_ID)) {
@@ -82,7 +84,17 @@ class clase_mysql{
 			for ($i=1; $i < $this->numcampos() ; $i++) { 
 				if (($this->nombrecampo($i))=='descripcion') {
 					echo "<td>".utf8_encode(substr($row[$i],0,50))."...</td>";
- 				}else{
+ 				}elseif (($this->nombrecampo($i))=='imagen') {
+ 					//img/aspiradora3.jpg
+ 					$nombre = ($row[$i]);
+
+ 				  echo "<td><img src='$nombre' class='img-rounded'  height='42' width='42' ></td>";
+
+ 				  //echo "<td><img src='.utf8_encode($row[$i]).' class='img-rounded'></td>";
+ 					//echo "<td>".utf8_encode($row[$i])."</td>";
+
+ 				}
+ 				else{
  					echo "<td>".utf8_encode($row[$i])."</td>";
  				}
 			}
