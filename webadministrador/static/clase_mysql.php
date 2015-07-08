@@ -76,8 +76,6 @@ class clase_mysql{
 			echo "<th>".$this->nombrecampo($i)."</th>";
 		}
 	}
-
-
 	function verconsultadmin($administrador){
 		while ($row = mysql_fetch_array($this->consulta_ID)) {
 			echo "<tr>";
@@ -131,14 +129,21 @@ class clase_mysql{
  				}else{
  					if (($this->nombrecampo($i))=='promocion') {
 	 					echo "<p>Promoción: </p>";
-	 					echo"<select name='promocion'>";
+	 					echo"<select name='nombre_cat'>";
 	 					echo "<option value='si'>Si</option>";
 	 					echo "<option value='no'>No</option>";
 	 					echo"</select>";
 	 					echo"<div><br></div>";
  					}else{
-	 					echo $this->nombrecampo($i).": <input name='".$this->nombrecampo($i)."'class='form-control'  placeholder='".$this->nombrecampo($i)."'  required autofocus><br>";
-	 				}
+ 						if (($this->nombrecampo($i))=='descripcion') {
+		 					echo "<p>Descripción: </p>";
+		 					echo "<textarean ame='descripcion' rows='10' cols='50' style='width: 250px; color:black;'></textarea>";
+		 					echo "<div><br></div>";
+	 					}
+	 					else{
+		 					echo $this->nombrecampo($i).": <input name='".$this->nombrecampo($i)."'class='form-control'  placeholder='".$this->nombrecampo($i)."'  required autofocus><br>";
+		 				}
+ 					} 					
  				} 				
 	 		}
 	 		echo "<input type='hidden' name='bandera' value='3' >";
@@ -224,8 +229,14 @@ class clase_mysql{
 		 					echo"</select>";
 		 					echo"<div><br></div>";
 	 					}else{
-							echo $this->nombrecampo($i).": <input name='".utf8_encode($this->nombrecampo($i))."'class='form-control' value='".utf8_encode($row[$this->nombrecampo($i)])."' placeholder='".$this->nombrecampo($i)."'><br>";
-						}
+	 						if (($this->nombrecampo($i))=='descripcion') {
+			 					echo "<p>Descripción: </p>";
+			 					echo "<textarea name='descripcion' rows='10' cols='50' style='width: 250px; color:black;'>".utf8_encode($row[$this->nombrecampo($i)])."</textarea>";
+			 					echo "<div><br></div>";
+		 					}else{
+								echo $this->nombrecampo($i).": <input name='".utf8_encode($this->nombrecampo($i))."'class='form-control' value='".utf8_encode($row[$this->nombrecampo($i)])."' placeholder='".$this->nombrecampo($i)."'><br>";
+							}
+	 					}	 						 						
 	 				}
 				}
  			}
@@ -239,8 +250,6 @@ class clase_mysql{
  							while ($row = mysql_fetch_array($sql)){
  								echo "<option value=".$row['id'].">".utf8_encode(substr($row['nombre'],0,25))."...</option>";
  							}
-
-
  							echo"</select>";
  							echo"<div><br></div>";
  						}else{
