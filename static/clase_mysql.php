@@ -106,9 +106,15 @@
  		<tbody background='img/fondotabla.jpg'>";
  		while ($row = mysql_fetch_array($this->Consulta_ID)) {
  			echo "<tr>";
- 			for ($i=0; $i < $this->numcampos(); $i++) { 
- 				echo "<td><a href='productos1.php?seleccion=".utf8_encode($row['nombre'])."'><button class='btn btn-default' style='border:0px;'>".utf8_encode($row[$i])."</button></a></td>";
- 			}
+ 			$j=0;
+	 		for ($i=0; $i < $this->numcampos(); $i++) { 
+	 			if ($j==0) {
+ 					echo "<td><a href='productos1.php?seleccion=".utf8_encode(ucwords($row['nombre']))."'><button class='btn btn-default' style='border:0px;'>".utf8_encode($row[$i])."</button></a></td>";		
+	 			}else{
+ 					echo "<td><a href='productos1.php?seleccion=".utf8_encode(ucwords($row['nombre2']))."'><button class='btn btn-default' style='border:0px;'>".utf8_encode($row[$i])."</button></a></td>";		
+	 			}
+	 		$j++;	
+	 		}
  			echo "</tr>";
  		}
 
@@ -122,9 +128,14 @@
 	 		<tbody>";
 	 		while ($row = mysql_fetch_array($this->Consulta_ID)) {
 	 			echo "<tr>";
+	 			$j=0;
 	 			for ($i=0; $i < $this->numcampos(); $i++) { 
- 					echo "<td><a href='productos1.php?seleccion=".utf8_encode(ucwords($row['nombre']))."'><button class='btn btn-default' style='border:0px;'>".utf8_encode($row[$i])."</button></a></td>";
-	 				
+	 				if ($j==0) {
+ 						echo "<td><a href='productos1.php?seleccion=".utf8_encode(ucwords($row['nombre']))."'><button class='btn btn-default' style='border:0px;'>".utf8_encode($row[$i])."</button></a></td>";		
+	 				}else{
+ 						echo "<td><a href='productos1.php?seleccion=".utf8_encode(ucwords($row['nombre2']))."'><button class='btn btn-default' style='border:0px;'>".utf8_encode($row[$i])."</button></a></td>";		
+	 				}
+	 			$j++;	
 	 			}
 	 			echo "</tr>";
 	 		}
@@ -141,7 +152,7 @@
  		echo "<tbody>";
  		$mod=5;
  		while ($row = mysql_fetch_array($this->Consulta_ID)) {
- 			echo "<tr  class='col-md-3'>";
+ 			echo "<tr  class='col-md-3 col-xs-5 col-sm-5'>";
  			echo "<td>		
  					<div >
                         <div class='thumbnail'>
@@ -151,7 +162,7 @@
 	                                <h5 class='pull-right thumbnail' style='font-size: 150%;'>$ ".$row['precio']."</h5>                                
 	                            </div>
 	                            
-									<a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><h5  style='font-size:85%;'><strong>".utf8_encode($row['nombre'])."</strong></h5></a>
+									<a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><h5  style='font-size:85%;'><strong>".substr(utf8_encode($row['nombre']),0,15)."..</strong></h5></a>
 	                           		 <p>".substr(utf8_encode($row['descripcion']),0,25)."..</p>
 	                            
                             
@@ -223,7 +234,7 @@
 	                        <div>
 	                            <h5 class='pull-right thumbnail' style='font-size: 150%;'>$ ".$row['precio']."</h5>                                
 	                           		   
-									<a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><h5  style='font-size:85%;'><strong>".utf8_encode($row['nombre'])."</strong></h5></a>
+									<a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><h5  style='font-size:85%;'><strong>".substr(utf8_encode($row['nombre']),0,15)."..</strong></h5></a>
 	                           		 <p>".substr(utf8_encode($row['descripcion']),0,25)."..</p>
                             </div>
                             <div align='center'>";

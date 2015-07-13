@@ -102,7 +102,7 @@ class clase_mysql{
 					case 1:
 					    echo "<td><a class='myButton' href='administrador.php?id=$row[0]&act=1&pid=1'>Borrar</a></td>";
 					    echo "<td><a class='myButton' href='administrador.php?id=$row[0]&act=2&pid=1&func=1'>Editar</a></td>";
-						break;
+						break;	
 					case 2:
 						echo "<td><a class='myButton' href='administrador.php?id=$row[0]&act=1&pid=2'>Borrar</a></td>";
 						echo "<td><a class='myButton' href='administrador.php?id=$row[0]&act=2&pid=2&func=1'>Editar</a></td>";
@@ -149,7 +149,7 @@ class clase_mysql{
  					}else{
  						if (($this->nombrecampo($i))=='descripcion') {
 		 					echo "<p>Descripción: </p>";
-		 					echo "<textarean ame='descripcion' rows='10' cols='50' style='width: 250px; color:black;'></textarea>";
+		 					echo "<textarea name='descripcion' rows='10' cols='50' style='width: 250px; color:black;'></textarea>";
 		 					echo "<div><br></div>";
 	 					}
 	 					else{
