@@ -45,19 +45,19 @@ extract($_GET);
 			
 
 			if (implode($cont)==0) {
-
-	 			mysql_query("INSERT INTO recomendaciones VALUES('',".$_SESSION['id'].",'".utf8_decode($nombre)."','".$fila['nombre_cat']."','".$filares['descripcion']."','ultimo')");
+				
+	 			$miconexion->consulta("INSERT INTO recomendaciones VALUES('',".$_SESSION['id'].",'".utf8_decode($nombre)."','".$fila['nombre_cat']."','".$filares['descripcion']."','ultimo')");
 				 
 			}elseif(implode($cont)==1) {
-			 	mysql_query("UPDATE recomendaciones SET estado = '' WHERE id = ".$res['id']."+1");
+			 	$miconexion->consulta("UPDATE recomendaciones SET estado = '' WHERE id = ".$res['id']."");
 
-	 			mysql_query("INSERT INTO recomendaciones VALUES('',".$_SESSION['id'].",'".utf8_decode($nombre)."','".$fila['nombre_cat']."','".$filares['descripcion']."','ultimo')");
+	 			$miconexion->consulta("INSERT INTO recomendaciones VALUES('',".$_SESSION['id'].",'".utf8_decode($nombre)."','".$fila['nombre_cat']."','".$filares['descripcion']."','ultimo')");
 				 
 			}elseif(implode($cont)==2) {
-			 	mysql_query("DELETE FROM recomendaciones WHERE id_usuario=".$_SESSION['id']." and id=".$res['id']."");
-			 	mysql_query("UPDATE recomendaciones SET estado = '' WHERE id = ".$res['id']."+1");
+			 	$miconexion->consulta("DELETE FROM recomendaciones WHERE id_usuario=".$_SESSION['id']." and id=".$res['id']."");
+			 	$miconexion->consulta("UPDATE recomendaciones SET estado = '' WHERE id = ".$res['id']."+1");
 
-	 			mysql_query("INSERT INTO recomendaciones VALUES('',".$_SESSION['id'].",'".utf8_decode($nombre)."','".$fila['nombre_cat']."','".$filares['descripcion']."','ultimo')");
+	 			$miconexion->consulta("INSERT INTO recomendaciones VALUES('',".$_SESSION['id'].",'".utf8_decode($nombre)."','".$fila['nombre_cat']."','".$filares['descripcion']."','ultimo')");
 				 
 			}
 
@@ -65,11 +65,11 @@ extract($_GET);
 
 
 			if (implode($cont2)<=15) {
-	 			mysql_query("INSERT INTO historial VALUES('',".$_SESSION['id'].",".$fila['id'].",'".utf8_decode($nombre)."','".$fila['precio']."','".$fila['nombre_cat']."','".$fila['imagen']."')");
+	 			$miconexion->consulta("INSERT INTO historial VALUES('',".$_SESSION['id'].",".$fila['id'].",'".utf8_decode($nombre)."','".$fila['precio']."','".$fila['nombre_cat']."','".$fila['imagen']."')");
 
 			}elseif(implode($cont2)>=16){
-			 	mysql_query("DELETE FROM historial WHERE id_usuario=".$_SESSION['id']." and id=".$res2['id']."");
-	 			mysql_query("INSERT INTO historial VALUES('',".$_SESSION['id'].",'".utf8_decode($nombre)."','".$fila['precio']."','".$fila['nombre_cat']."','".$fila['imagen']."')");
+			 	$miconexion->consulta("DELETE FROM historial WHERE id_usuario=".$_SESSION['id']." and id=".$res2['id']."");
+	 			$miconexion->consulta("INSERT INTO historial VALUES('',".$_SESSION['id'].",'".utf8_decode($nombre)."','".$fila['precio']."','".$fila['nombre_cat']."','".$fila['imagen']."')");
 
 			}
 

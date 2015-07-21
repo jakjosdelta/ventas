@@ -8,11 +8,11 @@ extract($_GET);
 		//Inicio de variables de sesión
 	session_start();
 
-	$consulta2= "SELECT * FROM recomendaciones where id_usuario=".$_SESSION['id'].""; 
+	$consulta2= "SELECT * FROM historial where id_usuario=".$_SESSION['id'].""; 
 	$resultado2= mysql_query($consulta2,$miconexion->conectar($db_name,$db_host, $db_user,$db_password)) or die (mysql_error());
 	while($filares=mysql_fetch_array($resultado2, MYSQL_ASSOC)){
 	 
-		$miconexion->consulta("DELETE FROM recomendaciones WHERE id_usuario=".$_SESSION['id']."");
+		$miconexion->consulta("DELETE FROM historial WHERE id_usuario=".$_SESSION['id']."");
 	}
 
 	header("location:index.php");

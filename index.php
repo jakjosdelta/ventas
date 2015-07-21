@@ -269,7 +269,7 @@ include("include/menu.php");
                   ";
                     $consulta2= "SELECT * FROM recomendaciones where id_usuario=".$_SESSION['id']." and estado='ultimo'"; 
                     $resultado2= mysql_query($consulta2,$miconexion->conectar($db_name,$db_host, $db_user,$db_password)) or die (mysql_error());
-
+                    //$miconexion->consulta();
                     while($filares=mysql_fetch_array($resultado2, MYSQL_ASSOC)) {
                       ?>
 
@@ -278,9 +278,7 @@ include("include/menu.php");
                             $cate= "SELECT * FROM categorias where  nombre='".$filares['nombre']."' or nombre2='".$filares['nombre']."'"; 
                             $resulta= mysql_query($cate,$miconexion->conectar($db_name,$db_host, $db_user,$db_password)) or die (mysql_error());
                             $fila=mysql_fetch_array($resulta, MYSQL_ASSOC);
-
                       ?>
-
 
                           <h3 align='center'><span class='label label-default'><?php echo ucwords(utf8_encode($filares['nombre_cat']));?></span></h3>
                           <img src="<?php echo $fila['imagen_cat'];?>" class="img-thumbnail">
@@ -373,10 +371,17 @@ include("include/menu.php");
                     }
                     ?>
 
+                    <?php
+                     $consultapri2= "SELECT * FROM historial where id_usuario='".@$_SESSION['id']."'"; 
+                      $resultadopri2= mysql_query($consultapri2,$miconexion->conectar($db_name,$db_host, $db_user,$db_password)) or die (mysql_error());
+                      $filapri2=mysql_fetch_array($resultadopri2, MYSQL_ASSOC);
+                      //en caso de que si hayan recomendaciones entra para hacer las recomendaciones caso contrario muetra el index normal
+                      if ($filapri2) {
+                    ?>
                     <div class="col-md-2">
 
                           <h3 align='center'><span class='label label-default'>Tu historial</span></h3>
-
+                        <a href="validar7.php"> <h5 align="center"> Borrar historial</h5></a>
                       </div>
 
                     <div class="col-md-10">
@@ -408,6 +413,9 @@ include("include/menu.php");
 
 
                     </div>
+                    <?php
+                    }
+                    ?>
           <?php
           //else para el if de inicio de secion
           }else{

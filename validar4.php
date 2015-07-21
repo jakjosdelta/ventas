@@ -18,7 +18,7 @@ extract($_GET);
 
 
 
-    mysql_query("INSERT INTO carrito VALUES('','".$filaprod['imagen']."','".$filaprod['nombre']."',".$filaprod['precio'].",1,".$filaprod['precio'].",".$_SESSION['id'].")");
+    $miconexion->consulta("INSERT INTO carrito VALUES('','".$filaprod['imagen']."','".$filaprod['nombre']."',".$filaprod['precio'].",1,".$filaprod['precio'].",".$_SESSION['id'].")");
 				//echo 'Se ha registrado con exito';
 	//echo ' <script language="javascript">alert("Usuario registrado con éxito");</script> ';
 	//mysql_close($link);
