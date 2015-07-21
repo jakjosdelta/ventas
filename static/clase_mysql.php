@@ -156,14 +156,14 @@
  			echo "<td>		
  					<div >
                         <div class='thumbnail'>
-                            <a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><img class='img-thumbnail' src='".$row['imagen']."' alt='' ></a>
+                            <a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><img src='".$row['imagen']."' alt='' ></a>
                             <div>
 	                            <div>
 	                                <h5 class='pull-right thumbnail' style='font-size: 150%;'>$ ".$row['precio']."</h5>                                
 	                            </div>
 	                            
-									<a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><h5  style='font-size:85%;'><strong>".substr(utf8_encode($row['nombre']),0,25)."..</strong></h5></a>
-	                           		 <p>".substr(utf8_encode($row['descripcion']),0,35)."..</p>
+									<a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><h5  style='font-size:85%;'><strong>".substr(utf8_encode($row['nombre']),0,15)."..</strong></h5></a>
+	                           		 <p>".substr(utf8_encode($row['descripcion']),0,25)."..</p>
 	                            
                             
                             </div>
@@ -229,13 +229,13 @@
  					<td>
 					<div class='thumbnail'>
 	                        <div>
-	                            <a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><img class='img-thumbnail' src='".$row['imagen']."' alt='' ></a>
+	                            <a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><img src='".$row['imagen']."' alt='' ></a>
 	                       	</div>
 	                        <div>
 	                            <h5 class='pull-right thumbnail' style='font-size: 150%;'>$ ".$row['precio']."</h5>                                
 	                           		   
-									<a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><h5  style='font-size:85%;'><strong>".substr(utf8_encode($row['nombre']),0,25)."..</strong></h5></a>
-	                           		 <p>".substr(utf8_encode($row['descripcion']),0,35)."..</p>
+									<a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><h5  style='font-size:85%;'><strong>".substr(utf8_encode($row['nombre']),0,15)."..</strong></h5></a>
+	                           		 <p>".substr(utf8_encode($row['descripcion']),0,25)."..</p>
                             </div>
                             <div align='center'>";
                             if (!@$_SESSION['id']) {
@@ -354,7 +354,7 @@
 									
 								}else{
 			                                                     
-                            		echo "<button type='button' class='btn btn-warning btn-lg' id='myBtn".$mod."'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button>";
+                            		echo "<button type='button' class='btn btn-warning' id='myBtn".$mod."'><span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'></span> Agregar al carrito</button>";
 								 echo " 
 				                       <div class='modal fade' id='myModal".$mod."' role='dialog'>
 				                          <div class='modal-dialog'>
@@ -430,7 +430,7 @@
  			for ($i=1; $i < $this->numcampos()-1; $i++) { 
  				if ($i==1) {
 
- 					echo "<td><img  src='".$row['imagen']."' class='img-thumbnail'></td>";	
+ 					echo "<td><img src='".$row['imagen']."' height='100px'></td>";	
  				}elseif ($i==4) {
  					echo "<script>
 
@@ -478,41 +478,6 @@
  		</div>";
 
  	}
-
- 	function recom(){
-
-         echo "<ul>";
- 		while ($row = mysql_fetch_array($this->Consulta_ID)) {
- 			echo "<li><a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id']."&total='><img src='".$row['imagen']."' class='img-thumbnail'></a>
- 						<div>
- 							<p align='center'>".utf8_encode(ucwords(strtolower($row['nombre'])))."    <b style='font-size:110%;'> $ ".$row['precio']."</b></p>
-
- 						</div>
- 			</li>";
- 		}
- 		echo "</ul>
- 			<a href='#' class='jcarousel-control-prev'>&lsaquo;</a>
-            <a href='#' class='jcarousel-control-next'>&rsaquo;</a>";
-
- 	}
-
- 	function historial(){
-
-         echo "<ul>";
- 		while ($row = mysql_fetch_array($this->Consulta_ID)) {
- 			echo "<li><a href='validar3.php?nombre=".utf8_encode($row['nombre'])."&id=".$row['id_producto']."&total='><img src='".$row['imagen']."' class='img-thumbnail'></a>
- 						<div>
- 							<p align='center'>".utf8_encode(ucwords(strtolower($row['nombre'])))."    <b style='font-size:110%;'> $ ".$row['precio']."</b></p>
-
- 						</div>
- 			</li>";
- 		}
- 		echo "</ul>
- 			<a href='#' class='jcarousel-control-prev'>&lsaquo;</a>
-            <a href='#' class='jcarousel-control-next'>&rsaquo;</a>";
-
- 	}
-
  
  function quitar_tildes($cadena) {
 				$no_permitidas= array ("á","é","í","ó","ú","Á","É","Í","Ó","Ú","ñ","À","Ã","Ì","Ò","Ù","Ã™","Ã ","Ã¨","Ã¬","Ã²","Ã¹","ç","Ç","Ã¢","ê","Ã®","Ã´","Ã»","Ã‚","ÃŠ","ÃŽ","Ã”","Ã›","ü","Ã¶","Ã–","Ã¯","Ã¤","«","Ò","Ã","Ã„","Ã‹");
