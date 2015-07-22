@@ -14,21 +14,24 @@
                 }
 
                 carousel.jcarousel('items').css('width', Math.ceil(width) + 'px');
+                    //vertical: true
             })
             .jcarousel({
                 wrap: 'circular'
+                //vertical: true
             });
+
 
             
 
         $('.jcarousel-control-prev')
             .jcarouselControl({
-                target: '-=3'
+                target: '-=1'
             });
 
         $('.jcarousel-control-next')
             .jcarouselControl({
-                target: '+=3'
+                target: '+=1'
             });
 
         $('.jcarousel-pagination')

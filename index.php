@@ -291,7 +291,7 @@ include("include/menu.php");
                                 <div class="jcarousel-wrapper">
                                     <!-- Carousel -->
                                         
-                                        <div class="jcarousel">
+                                        <div class="jcarousel" >
                                         
                                         <?php
                                           
@@ -344,7 +344,7 @@ include("include/menu.php");
                                 <div class="jcarousel-wrapper">
                                     <!-- Carousel -->
                                         
-                                        <div class="jcarousel">
+                                        <div class="jcarousel" >
                                         
                                         <?php
                                           
